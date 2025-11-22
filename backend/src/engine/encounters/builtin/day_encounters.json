@@ -1,1 +1,21 @@
+[
+  {
+    "npc": "Skater Kid",
+    "text": "A skater zigzags toward you, barely stopping before crashing. He grins, breathless.",
+    "choices": [
+      { "label": "Compliment the trick", "tag": "[flirt]" },
+      { "label": "Ask if he's okay", "tag": "[retreat]" },
+      { "label": "Challenge him to a race", "tag": "[risk]" }
+    ]
+  },
+  {
+    "npc": "Coffee Shop Poet",
+    "text": "A brooding poet snaps their notebook shut as you approach, eyeing you like you’re a new sonnet.",
+    "choices": [
+      { "label": "Ask about their writing", "tag": "[flirt]" },
+      { "label": "Order a drink quietly", "tag": "[retreat]" },
+      { "label": "Share a dramatic haiku", "tag": "[advance]" }
+    ]
+  }
+]
 
