@@ -49,4 +49,24 @@ function processInput(text) {
     case "combat_exit": return mainMenu;
   }
 }
+function splashScreen() {
+  clear();
+  write(`\x1b[36m
+██╗      ██████╗ ██████╗ ██████╗  ██████╗ ██╗  ██╗███████╗
+██║     ██╔═══██╗██╔══██╗██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝
+██║     ██║   ██║██████╔╝██████╔╝██║   ██║█████╔╝ █████╗  
+██║     ██║   ██║██╔═══╝ ██╔══██╗██║   ██║██╔═██╗ ██╔══╝  
+███████╗╚██████╔╝██║     ██║  ██║╚██████╔╝██║  ██╗███████╗
+╚══════╝ ╚═════╝ ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
+\x1b[0m`);
+
+  write("\n\nWelcome to the 90s.\n");
+  write("A retro BBS-style RPG — neon, danger, nightlife, romance.\n\n");
+  write("Press ENTER to begin...");
+}
+
+function handleSplashInput() {
+  authChoice();
+}
+
 
