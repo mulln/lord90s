@@ -8,19 +8,19 @@ const router = express.Router();
 
 router.get("/encounter", authMiddleware, async (req, res) => {
   const player = db.prepare("SELECT * FROM players WHERE id = ?").get(req.user.id);
-
   const encounter = await getEncounter(player);
   res.json(encounter);
 });
 
 router.post("/choose", authMiddleware, (req, res) => {
   const { tag } = req.body;
-  const player = db.prepare("SELECT * FROM players WHERE id = ?").get(req.user.id);
 
-  const outcome = applyRomanceOutcome(player, tag);
+  const player = db.prepare("SELECT * FROM players WHERE id = ?").get(req.user.id);
+  const outcome = applyRomanceOutcome(player, tag, db);
 
   db.prepare(`
-    UPDATE players SET charm = charm + ?, nerve = nerve + ?
+    UPDATE players
+    SET charm = charm + ?, nerve = nerve + ?
     WHERE id = ?
   `).run(outcome.effects.charm || 0, outcome.effects.nerve || 0, player.id);
 
