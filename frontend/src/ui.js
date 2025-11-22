@@ -208,5 +208,64 @@ function logout() {
   API.setToken(null);
   splashScreen();
 }
+function exploreAction() {
+  clear();
+  API.explore().then(res => {
+    write(`${res.msg}\n\n`);
+    write("Press ENTER to return.");
+    currentScreen = "combat_exit";
+  });
+}
+function fightNPC() {
+  clear();
+  API.fightNPC().then(res => {
+    res.log.forEach(line => write(line + "\n"));
+    write(`\nHP Remaining: ${res.playerHp}\n`);
+    write("\nPress ENTER to return.");
+    currentScreen = "combat_exit";
+  });
+}
+let currentChoices = [];
+
+function npcEncounter() {
+  clear();
+  API.getEncounter().then(res => {
+    const enc = res.encounter;
+    currentChoices = enc.choices;
+
+    write(`\n${enc.npc} approaches...\n\n`);
+    write(enc.text + "\n\n");
+
+    enc.choices.forEach((c, i) => {
+      write(`${i+1}) ${c.label}\n`);
+    });
+
+    write("\nChoose: ");
+    currentScreen = "encounter_choice";
+  });
+}
+
+function handleEncounterChoice(text) {
+  const idx = Number(text) - 1;
+  if (idx < 0 || idx >= currentChoices.length) {
+    write("Invalid choice. Try again: ");
+    return;
+  }
+
+  const { tag } = currentChoices[idx];
+
+  API.chooseEncounter(tag).then(res => {
+    clear();
+    write(res.msg + "\n");
+
+    if (res.affinityDelta > 0)
+      write("\nThey seem more into you now…\n");
+    if (res.affinityDelta < 0)
+      write("\nYou may have blown the moment.\n");
+
+    write("\nPress ENTER to return.");
+    currentScreen = "combat_exit";
+  });
+}
 
 
