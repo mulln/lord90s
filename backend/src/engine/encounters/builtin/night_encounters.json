@@ -1,1 +1,21 @@
+[
+  {
+    "npc": "Club Dancer",
+    "text": "A dancer locks eyes with you across the glowing dance floor, hips swaying to the beat. The moment stretches.",
+    "choices": [
+      { "label": "Match their rhythm", "tag": "[flirt]" },
+      { "label": "Buy them a drink", "tag": "[advance]" },
+      { "label": "Look away casually", "tag": "[retreat]" }
+    ]
+  },
+  {
+    "npc": "Shadowy Figure",
+    "text": "A figure in a long coat leans on a brick wall, half-hidden by shadows. Something about them pulls you in.",
+    "choices": [
+      { "label": "Approach boldly", "tag": "[advance]" },
+      { "label": "Ask what they're doing", "tag": "[risk]" },
+      { "label": "Keep walking", "tag": "[retreat]" }
+    ]
+  }
+]
 
